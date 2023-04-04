@@ -1,0 +1,28 @@
+//mendefinisikan versi protokol protobuf yang digunakan dalam file ini.
+syntax = "proto3";
+
+//mendefinisikan objek User dengan atribut id, name, dan email.
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+//mendefinisikan service UserService dengan 4 fungsi yang bisa dipanggil oleh client, yaitu GetUser, CreateUser, UpdateUser, dan DeleteUser.
+service UserService {
+  rpc GetUser(UserRequest) returns (UserResponse) {} //mendefinisikan fungsi GetUser yang menerima parameter UserRequest dan mengembalikan UserResponse.
+  rpc CreateUser(User) returns (UserResponse) {} //mendefinisikan fungsi CreateUser yang menerima parameter User dan mengembalikan UserResponse.
+  rpc UpdateUser(User) returns (UserResponse) {} //mendefinisikan fungsi UpdateUser yang menerima parameter User dan mengembalikan UserResponse.
+  rpc DeleteUser(UserRequest) returns (UserResponse) {} //mendefinisikan fungsi DeleteUser yang menerima parameter UserRequest dan mengembalikan UserResponse.
+}
+
+//mendefinisikan objek UserRequest dengan atribut id.
+message UserRequest {
+  string id = 1;
+}
+
+//mendefinisikan objek UserResponse dengan atribut user dan message.
+message UserResponse {
+  User user = 1;
+  string message = 2;
+}
